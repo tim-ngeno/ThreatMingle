@@ -15,7 +15,7 @@
         <li><a href="{% url 'home' %}">Home</a></li>
         <li><a href="{% url 'risk-assessment' %}">Assessment</a></li>
         <li><a href="{% url 'chat-index' %}">Chat</a></li>
-        <li><a href="#learn">Learning</a></li>
+        <li><a href="{% url 'learning-view' %}">Learning</a></li>
     </ul>
     </nav>
 
@@ -46,15 +46,6 @@
         </div>
       </div>
 
-      <!-- Assessment Form Section -->
-      <div id="assessment-form">
-        <!-- Add your assessment form here -->
-        <form>
-          <!-- Your form fields go here -->
-          <button type="submit">Submit Assessment</button>
-        </form>
-      </div>
-    </section>
 
     <section id="chat">
       <div>
@@ -82,7 +73,7 @@
           <h2>Learning Modules</h2>
           <p>Description of the learning modules goes here.</p>
           <!-- Add more details about the learning modules -->
-          <button onclick="location.href='#learning-page'">Access Learning</button>
+          <button><a href="{% url 'learning-view' %}">Access Learning</a></button>
         </div>
         <div>
           <!-- Add an image or visual representation related to learning if needed -->
@@ -91,11 +82,7 @@
       </div>
     </section>
 
-    <!-- Learning Page Section -->
-    <section id="learning-page">
-      <!-- Add your learning page content here -->
-    </section>
-
+ 
     <!-- Footer -->
     <footer>
       <ul>
