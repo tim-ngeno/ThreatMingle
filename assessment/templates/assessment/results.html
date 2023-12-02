@@ -1,0 +1,9 @@
+<h1>Risk Assessment Results</h1>
+{% if result %}
+{% for key, value in result.items %}
+<p>{{ key.title }}: {{ value }}</p>
+{% endfor %}
+<h2>{{ advice }}</h2>
+{% else %}
+<p>No results available</p>
+{% endif %}
