@@ -1,7 +1,8 @@
+from decouple import config
 from django.shortcuts import render
-import os
 
-api_key = os.getenv('VIRUSTOTAL_API_KEY')
+
+api_key = config('VIRUSTOTAL_API_KEY')
 
 
 def home(request):
