@@ -1,5 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cssfiles %}
+<!-- <link href="{% static 'css/base.css' %}" rel="stylesheet"/> -->
+{% endblock cssfiles %}
+
+
+{% block content %}
 <form method="post">
   {% csrf_token %}
   {{ form.as_p }}
   <input name="" type="submit" value="Perform scan"/>
 </form>
+
+{% endblock content %}

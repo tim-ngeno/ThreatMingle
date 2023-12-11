@@ -1,3 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block cssfiles %}
+<!-- <link href="{% static 'css/base.css' %}" rel="stylesheet"/> -->
+{% endblock cssfiles %}
+
+
+{% block content %}
 <h1>Risk Assessment Results</h1>
 {% if result %}
 {% for key, value in result.items %}
@@ -7,3 +16,5 @@
 {% else %}
 <p>No results available</p>
 {% endif %}
+
+{% endblock content %}
