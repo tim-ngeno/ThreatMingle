@@ -1,10 +1,10 @@
 language: python
 python:
-  - "3.9"
-
+- '3.9'
 install:
-  - pip install -r requirements.txt
-
-
+- pip install -r requirements.txt
 script:
-  - python manage.py test
+- python manage.py test
+env:
+  global:
+    secure: bwTqvEHRMXd86QWfynA9zpAwtU+yNgquYSb4G4o3idrutABGb9P4svvyZLHdrSX2OlkZ7SsAx98y5HemKT+DH8dG4YydhTbLSYkZe+Ja5ABcgk5qNsb19MNUPQ2Ub8hRBGPWZAAJpQdK9bEuqCJqCp1oDhFdBwlCWpOvZqHx++cclpTMp9bgXfRCeqgmQkGA5OuS8nwYaOtHWtQUR6OoEp0wuSiBFJ2Ah1zJ/npaFTCK3Sy+EHwSBAIfiTIQVv92Zq8hmj1p3RJf2SeXdQkr3Xkfd16p743Ytny/0ujreUiU69o3GUPrNsMNnbnzXrC0lm/ZhmO8vFLcLBUwnKjcERCNQka7SnJomTjegjuODhY7kDSb3QlXuRfkWFFaILxc+JWh2OopGVUPV3v7XvYf1EnHTeDNCxP/NHplxIH9IaJlzFUXtIyA5X+infXPNlBb/8zJEi1ky6Ig4eAMoJAJXseDjofflr+mx6oPy0QopcqdwudKOiaZP33cIi3nGM6srYMxxWr05nzp/7zzi9cm5Q+gzhYKAcHKgpBp3tshL/j3BijfUNtBPoYyEgAAfRfjSlE++4pfsxxQpNI8njJodjVWkMeaFM7Xe1J+TZJ3OlPgAoeaZCJSz5ShejybC9pIfK8EONhaEhedhbOo8mICf1rTDqOz/pULJjt+kx8LJPY=
