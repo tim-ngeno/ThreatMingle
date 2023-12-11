@@ -1,33 +1,34 @@
+{% extends "base.html" %}
 {% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8"/>
-    <title>Django-Chat</title>
-  </head>
-  <body>
-    <div class="container">
-      <h2>Channels chat</h2>
-      <div class="row">
-	<div class="chat-log">
-	  <label for="chatLog">Room: {{ room.name }}</label>
-	  <textarea id="chatLog" readonly></textarea>
-	</div>
-	<div class="input-group">
-	  <input name="" type="text" value="" id="chatMessageInput"
-		 placeholder="Type your message"/>
-	  <div class="input-group-append">
-	    <button id="chatMessageSend">Send</button>
-	  </div>
-	</div>
-	<div class="online-users">
-	  <label for="onlineUsers">Online Users</label>
-	  <select id="" name="" id="onlineUsersSelector"></select>
-	</div>
 
-      </div>
-      {{ room.name|json_script:"roomName" }}
+{% block cssfiles %}
+<!-- <link href="{% static 'css/base.css' %}" rel="stylesheet"/> -->
+{% endblock cssfiles %}
+
+
+{% block content %}
+<div class="container">
+  <h2>Channels chat</h2>
+  <div class="row">
+    <div class="chat-log">
+      <label for="chatLog">Room: {{ room.name }}</label>
+      <textarea id="chatLog" readonly></textarea>
     </div>
-    <script type="text/javascript" src="{% static 'hub/js/room.js' %}"></script>
-  </body>
-</html>
+    <div class="input-group">
+      <input name="" type="text" value="" id="chatMessageInput"
+	     placeholder="Type your message"/>
+      <div class="input-group-append">
+	<button id="chatMessageSend">Send</button>
+      </div>
+    </div>
+    <div class="online-users">
+      <label for="onlineUsers">Online Users</label>
+      <select id="" name="" id="onlineUsersSelector"></select>
+    </div>
+
+  </div>
+  {{ room.name|json_script:"roomName" }}
+</div>
+<script type="text/javascript" src="{% static 'hub/js/room.js' %}"></script>
+
+{% endblock content %}
