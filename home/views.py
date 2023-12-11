@@ -9,4 +9,5 @@ def home(request):
     """
     Renders the base html template for the project
     """
-    return render(request, 'home/base.html', {'api_key': api_key})
+    return render(request, 'home/home.html', {'api_key': api_key,
+                                              'title': "Home"})
