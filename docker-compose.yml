@@ -28,7 +28,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: sh -c "/wait && python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: sh -c "/wait && python manage.py runserver 0.0.0.0:8000"
     restart: always
     volumes:
       - .:/app
@@ -41,12 +41,23 @@ services:
         condition: service_started
       db:
         condition: service_healthy
+      migrations:
+        condition: service_completed_successfully
 
     environment:
       - WAIT_HOSTS=db:3306
       - WAIT_TIMEOUT=30
       - WAIT_SLEEP_INTERVAL=20
       - WAIT_HOST_CONNECT_TIMEOUT=20
+
+  migrations:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: sh -c "python manage.py migrate --no-input"
+    depends_on:
+      db:
+        condition: service_healthy
 
 volumes:
   mariadb_data:
