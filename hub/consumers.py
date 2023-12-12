@@ -18,6 +18,10 @@ class ChatConsumer(WebsocketConsumer):
         self.room = Room.objects.get(name=self.room_name)
         self.user = self.scope['user']
 
+        if not self.user.is_authenticated:
+            self.close()
+            return
+
         self.accept()
 
         async_to_sync(self.channel_layer.group_add)(
