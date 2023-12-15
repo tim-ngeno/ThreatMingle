@@ -1,0 +1,78 @@
+/* static/css/styles.css */
+
+/* Reset some default styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Shared style for content sections */
+section {
+    padding: 40px;
+}
+
+/* Flex display for the parent div within each section */
+section > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Style for the left side of each section */
+section > div > div:first-child {
+    flex: 1;
+    max-width: 50%;
+}
+
+/* Style for the right side of each section */
+section > div > div:last-child {
+    flex: 1;
+    max-width: 50%;
+}
+
+/* Additional styling for specific sections */
+
+/* Home section */
+#home {
+    background-color: #FEFAE0;
+    color: #5F6F52;
+}
+
+/* Assessment section */
+#assessment {
+    background-color: #A9B388;
+    color: #5F6F52;
+}
+
+/* Chat section */
+#chat {
+    background-color: #B99470;
+    color: #fff;
+}
+
+/* Learning section */
+#learning {
+    background-color: #FAEED1;
+    color: #5F6F52;
+}
+
+/* Footer */
+footer {
+    background-color: #5F6F52;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Footer links */
+footer a {
+    color: #FEFAE0;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Hover effect for footer links */
+footer a:hover {
+    text-decoration: underline;
+}

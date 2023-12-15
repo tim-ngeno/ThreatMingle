@@ -1,0 +1,41 @@
+body {
+  background-color: #FEFAE0;
+}
+
+/* Reset some default styles */
+nav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Style for each navigation item */
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+/* Style for the links */
+nav a {
+  text-decoration: none;
+  color: #5F6F52; /* Default text color */
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  background-color: #FEFAE0; /* Default background color */
+  border-radius: 5px;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transition effect */
+}
+
+/* Hover effect */
+nav a:hover {
+  background-color: #B99470; /* Change background color on hover */
+  color: #fff; /* Change text color on hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
+
+/* Optional: Add padding and margin to the entire navigation bar */
+nav ul {
+  padding: 10px;
+  margin: 0;
+}
