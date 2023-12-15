@@ -6,7 +6,7 @@ attrs==23.1.0
 autobahn==23.6.2
 Automat==22.10.0
 autopep8==2.0.4
-black==23.11.0
+black==23.12.0
 certifi==2023.11.17
 cffi==1.16.0
 channels==4.0.0
@@ -19,6 +19,7 @@ daphne==4.0.0
 Django==4.2.7
 flake8==6.1.0
 frozenlist==1.4.0
+gunicorn==21.2.0
 HTMLParser==0.0.2
 hyperlink==21.0.0
 idna==3.6
@@ -57,6 +58,7 @@ txaio==23.1.1
 typing_extensions==4.8.0
 urllib3==1.26.6
 vt-py==0.17.5
+whitenoise==6.6.0
 yapf==0.40.2
 yarl==1.9.3
 zipp==3.17.0
