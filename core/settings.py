@@ -101,7 +101,7 @@ DATABASES = {
         "NAME": config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PWD'),
-        'HOST': config('DB_HOST', default='db'),
+        'HOST': 'db',
         'PORT': 3306,
     }
 }
