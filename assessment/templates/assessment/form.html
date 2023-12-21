@@ -2,15 +2,23 @@
 {% load static %}
 
 {% block cssfiles %}
-<!-- <link href="{% static 'css/base.css' %}" rel="stylesheet"/> -->
+<link href="{% static 'assessment/css/form.css' %}" rel="stylesheet" type="text/css"/>
 {% endblock cssfiles %}
 
 
 {% block content %}
-<form method="post">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <input name="" type="submit" value="Perform scan"/>
-</form>
-
+<section class="form-group">
+  <form method="post" id="assessment-form">
+    {% csrf_token %}
+    <h1 class="h3 mb-3 font-weight-normal">Assessment Form</h1>
+    {{ form.as_p }}
+    <input name="" type="submit" value="Perform scan" id="scan-button" />
+  </form>
+</section>
 {% endblock content %}
+
+
+
+{% block scripts %}
+<script type="text/javascript" href="{% static 'assessment/js/form.js' %}"></script>
+{% endblock scripts %}
