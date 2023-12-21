@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     "channels",
     "daphne",
+    "widget_tweaks",
 
     "decouple",
 
@@ -101,7 +102,7 @@ DATABASES = {
         "NAME": config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PWD'),
-        'HOST': 'db',
+        'HOST': config('DB_HOST', 'db'),
         'PORT': 3306,
     }
 }
