@@ -40,7 +40,6 @@ INSTALLED_APPS = [
 
     "channels",
     "daphne",
-    "widget_tweaks",
 
     "decouple",
 
