@@ -1,5 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
+import random
+import string
 
 
 class Room(models.Model):
@@ -19,8 +21,20 @@ class Room(models.Model):
         """
         Allow a user to join a chat room
         """
-        self.online.add(user)
-        self.save()
+        if user not in self.online.all():
+            random_username = self.generate_random_username()
+            user.username = random_username
+            user.save()
+            self.online.add(user)
+            self.save()
+
+    def generate_random_username(self):
+        """
+        Generate a random username for users
+        """
+        random_string = ''.join(random.choices(string.ascii_lowercase,
+                                               k=6))
+        return f'user_{random_string}'
 
     def leave(self, user):
         """
