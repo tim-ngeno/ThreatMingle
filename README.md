@@ -1,4 +1,3 @@
-
 ---
 
 # ThreatMingle
@@ -14,17 +13,16 @@ ThreatMingle is a comprehensive cybersecurity platform designed to provide real-
   - [Hub](#hub)
   - [Learn](#learn)
   - [Home](#home)
-- [WebSocket Chat](#websocket-chat)
+- [Contributing](#contributing)
 
 ## Overview
 
 ThreatMingle is divided into several components, each serving a distinct purpose:
 
-- **Assessment**: Personalized risk assessments and threat queries.
-- **Hub**: Real-time communication and community forums.
+- **Assessment**: Personalized risk assessments and threat queries for URLs, files and IP addresses.
+- **Hub**: Real-time communication/chat and community forums.
 - **Learn**: Interactive learning modules on various cybersecurity topics.
 - **Home**: Landing page and core application settings.
-- **WebSocket Chat**: Real-time chat application for platform-wide communication.
 
 ## Installation
 
@@ -49,15 +47,20 @@ pip install -r requirements.txt
 python3 manage.py migrate
 ```
 
+4. Run server
+   ```bash
+   python3 manage.py runserver
+   ```
+   
+
 ## Usage
 
 ### Home
 You can access the application served on your localhost address, usually `127.0.0.1:8000`
 
-The Home app manages the landing page and core settings.
+The Home app manages the landing page and core settings of the application.
 
 - Visit the home page at `/`.
-
 
 On this interface, the project presents a simple interface, with a chart representation of popular threat categories, ranked by rate of attacks.
 
@@ -86,3 +89,7 @@ The `hub` platform uses websockets to facilitate real-time chat functionality.
 The Learn app contains interactive learning modules.
 
 - Explore learning modules at `/learn/`.
+
+## Contributing
+Contributions to ThreatMingle are highly welcomed! If you would like to add value to the project, feel free to open an issue or a pull request.
+
