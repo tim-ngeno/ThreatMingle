@@ -2,7 +2,9 @@
 {% load static %}
 
 {% block cssfiles %}
-<!-- <link href="{% static 'css/base.css' %}" rel="stylesheet"/> -->
+<link href="{% static 'hub/css/room.css' %}" rel="stylesheet"
+      type="text/css"
+/>
 {% endblock cssfiles %}
 
 
@@ -15,8 +17,12 @@
       <textarea id="chatLog" readonly></textarea>
     </div>
     <div class="input-group">
-      <input name="" type="text" value="" id="chatMessageInput"
-	     placeholder="Type your message"/>
+      <div class="message">
+	<input name="" type="text" value=""
+	       id="chatMessageInput"
+	       placeholder="Type your message"
+	/>
+      </div>
       <div class="input-group-append">
 	<button id="chatMessageSend">Send</button>
       </div>
