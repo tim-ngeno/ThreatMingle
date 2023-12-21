@@ -1,15 +1,18 @@
+from django.http import HttpResponseBadRequest
 from django.shortcuts import render, redirect
 from django.urls import reverse
 
 from asgiref.sync import sync_to_async
 from .forms import AssessmentForm
+from decouple import config
 import ast
 import asyncio
-import os
+import ipaddress
+import re
 import requests
 import vt
 
-api_key = os.getenv('VIRUSTOTAL_API_KEY')
+api_key = config('VIRUSTOTAL_API_KEY')
 loop = asyncio.new_event_loop()
 asyncio.set_event_loop(loop)
 
@@ -32,14 +35,19 @@ def risk_assessment_view(request):
                 score = calculate_reputation_score(result)
                 advice = interpret_reputation_score(score)
 
-            return redirect(
-                reverse('risk-results') +
-                f'?result={result}&score={score}&advice={advice}'
-            )
+                return redirect(
+                    reverse('risk-results') +
+                    f'?result={result}&score={score}&advice={advice}'
+                )
+            else:
+                return 'Error: Failed to perform the scan'
+        else:
+            return 'Invalid form data'
     else:
         form = AssessmentForm()
 
-    return render(request, 'assessment/form.html', {'form': form})
+    return render(request, 'assessment/form.html', {
+        'form': form, 'title': 'Assessment'})
 
 
 def risk_results_view(request):
@@ -58,7 +66,10 @@ def risk_results_view(request):
     return render(
         request,
         'assessment/results.html',
-        {'result': result, 'score': score, 'advice': advice}
+        {
+            'result': result, 'score': score,
+            'advice': advice, 'title': 'Result'
+        }
     )
 
 
@@ -114,19 +125,22 @@ def scan_ip(ip_addr):
     """
     Scan IP address for potential risks
     """
-    url = f'https://www.virustotal.com/api/v3/ip_addresses/{ip_addr}'
-    headers = {
-        'accept': 'application/json',
-        'x-apikey': api_key,
-    }
-    try:
-        res = requests.get(url, headers=headers)
-        ip = res.json()
-        result = ip['data']['attributes']['last_analysis_stats']
-        if result:
-            return result
-    except Exception as e:
-        print(f'An unexpected error occurred: {e}')
+    if is_valid_ip(ip_addr):
+        url = f'https://www.virustotal.com/api/v3/ip_addresses/{ip_addr}'
+        headers = {
+            'accept': 'application/json',
+            'x-apikey': api_key,
+        }
+        try:
+            res = requests.get(url, headers=headers)
+            ip = res.json()
+            result = ip['data']['attributes']['last_analysis_stats']
+            if result:
+                return result
+        except Exception as e:
+            print(f'An unexpected error occurred: {e}')
+            return None
+    else:
         return None
 
 
@@ -140,10 +154,13 @@ def calculate_reputation_score(stats):
         'suspicious': 2,
     }
 
-    total_score = sum(
-        weights.get(category, 0) * count for category,
-        count in stats.items()
-    )
+    try:
+        total_score = sum(
+            weights.get(category, int(0)) * (count) for category,
+            count in stats.items()
+        )
+    except Exception:
+        return None
 
     max_score = sum(weights.values())
     percentage_score = (total_score // max_score) * 100
@@ -153,14 +170,46 @@ def calculate_reputation_score(stats):
 
 def interpret_reputation_score(score):
     """
-    Defien threshold for interpretation of reputation scores
+    Define threshold for interpretation of reputation scores
     """
-    if score >= 75:
-        return f'Score: {score} Resource is safe to use'
-    elif 50 <= score < 75:
-        return f'Score: {score} Proceed with caution'
+    if score:
+        if score >= 75:
+            return f'Score: {score} Resource is safe to use'
+        elif 50 <= score < 75:
+            return f'Score: {score} Proceed with caution'
+        else:
+            return f'Score: {score} Use at your own risk'
     else:
-        return f'Score: {score} Use at your own risk'
+        return
+
+
+def is_valid_hash(hash_value):
+    """
+    Checks if provided string is a valid MD5 or SHA-256 hash.
+    """
+    # MD5 hashes should be 32 characters long, hexadecimal characters
+    md5_pattern = re.compile(r'^[0-9A-Fa-f]{32}$')
+
+    # SHA-256 should be 64 characters long,hexadecimal characters
+    sha_256_pattern = re.compile(r'^[0-9A-Fa-f]{64}$')
+
+    return bool(md5_pattern.match(hash_value) or
+                bool(sha_256_pattern.match(hash_value)))
+
+
+def is_valid_ip(ip_address):
+    """
+    Checks if the provided string is a valid IP address
+    """
+    try:
+        ipaddress.IPv4Address(ip_address)
+        return True
+    except ipaddress.AddressValueError:
+        try:
+            ipaddress.IPv6Address(ip_address)
+            return True
+        except ipaddress.AddressValueError:
+            return False
 
 
 async def main(selected_option, input_data):
@@ -168,8 +217,13 @@ async def main(selected_option, input_data):
     Async function handler
     """
     if selected_option == 'file':
-        return await scan_file(input_data)
+        if is_valid_hash(input_data):
+            print("valid hash")
+            return await scan_file(input_data)
+        print("invalid hash")
+        return HttpResponseBadRequest('Invalid input data format')
     elif selected_option == 'url':
         return await scan_url(input_data)
     elif selected_option == 'ip':
-        return await sync_to_async(scan_ip)(input_data)
+        if is_valid_ip(input_data):
+            return await sync_to_async(scan_ip)(input_data)
