@@ -8,11 +8,17 @@
 
 {% block content %}
 <!-- Content Section -->
+
+<div class="intro">
+  <p class="app-name"></p>
+  <p class="tag">Bridging the Gap Between Cyber Security and the Community</p>
+</div>
+
 <section id="home">
-  <div>
-    <div>
-      <h1>Your Project Name</h1>
-      <p>Description of your project goes here.</p>
+  <div class="section-elements">
+    <div class="heading">
+      <h2>Anticipate, Adapt, Defend - Stay One Step Ahead of Cyber Threats.</h2>
+      <p>Get empowered with realtime insights on the most popular threat categories, to help you stay on top of your security and fortify your digital defenses</p>
     </div>
     <div class="chart-content">
       <canvas id="myChart" width="400px" height="400px"></canvas>
@@ -21,66 +27,49 @@
 </section>
 
 <section id="assessment">
-  <div>
-    <div>
-      <h2>Assessment Information</h2>
-      <p>Description of the assessment goes here.</p>
-      <!-- Add more details about the assessment -->
-      <button><a href="{% url 'risk-assessment' %}">Access Form</a></button>
+  <div class="section-elements">
+    <div class="assess-button">
+      <img src="assessment_image.png" alt="Assessment Image">
+      <a href="{% url 'risk-assessment' %}">Access Form</a>
     </div>
     <div>
-      <!-- Add an image or visual representation related to assessment if needed -->
-      <img src="assessment_image.png" alt="Assessment Image">
+      <h2>Tailoring Security: Unleash Personalized Assessment Scans for Your Digital Armour.</h2>
+      <p>Your Security needs are unique. Experience tailored scans for your files and domains, to help you protect what matters most to you!</p>
     </div>
   </div>
+</section>
 
-
-  <section id="chat">
+<section id="chat">
+  <div class="section-elements">
     <div>
-      <div>
-        <h2>Chat Information</h2>
-        <p>Description of the chat feature goes here.</p>
-        <!-- Add more details about the chat -->
-        <button><a href="{% url 'chat-index' %}">Access Chat</a></button>
-      </div>
-      <div>
-        <!-- Add an image or visual representation related to chat if needed -->
-        <img src="chat_image.png" alt="Chat Image">
-      </div>
+      <h2>Connect, Collaborate, Secure - Engage in Real-time Conversations With Like-Minded Cyber Guardians.</h2>
+      <p>Step into a dynamic community where cybersecurity enthusiasts converge to discuss the latest trends, share insights and collectively strengthen the digital defense of our connected world.</p>
     </div>
-  </section>
+    <div class="chat-button">
+      <img src="chat_image.png" alt="Chat Image">
+      <a href="{% url 'chat-index' %}">Access Chat</a>
+    </div>
+  </div>
+</section>
 
-  <!-- Chat Page Section -->
-  <section id="chat-page">
-    <!-- Add your chat page content here -->
-  </section>
-
-  <section id="learning">
+<section id="learning">
+  <div class="section-elements">
+    <div class="learning-button">
+      <img src="learning_image.png" alt="Learning Image">
+      <a href="{% url 'learning-view' %}">Access Learning</a>
+    </div>
     <div>
-      <div>
-        <h2>Learning Modules</h2>
-        <p>Description of the learning modules goes here.</p>
-        <!-- Add more details about the learning modules -->
-        <button><a href="{% url 'learning-view' %}">Access Learning</a></button>
-      </div>
-      <div>
-        <!-- Add an image or visual representation related to learning if needed -->
-        <img src="learning_image.png" alt="Learning Image">
-      </div>
+      <h2>Empower Yourself: Knowledge is Power, Cybersecurity is Key - Unleash your potential.</h2>
+      <p>Explore modularized content designed to enhance your cyber security skills - learn, grow, and stay ahead in the ever-evolving landscape .</p>
     </div>
-  </section>
+  </div>
+</section>
 
-
-  <!-- Footer -->
-  <footer>
-    <ul>
-      <li><a href="#contact">Contact Us</a></li>
-      <li><a href="#privacy">Privacy Policy</a></li>
-      <li><a href="#terms">Terms of Service</a></li>
-    </ul>
-  </footer>
-  <input id="ENV_VAR" value="{{ api_key }}" type="hidden" />
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script type="text/javascript" src="{% static 'home/js/index.js' %}"></script>
+<input id="ENV_VAR" value="{{ api_key }}" type="hidden" />
 
 {% endblock content %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script type="text/javascript" src="{% static 'home/js/index.js' %}"></script>
+{% endblock scripts %}
