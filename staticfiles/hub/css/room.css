@@ -1,0 +1,102 @@
+body {
+  margin: 0;
+  paddding: 0;
+}
+
+.container {
+  padding: 20px;
+  margin: 20px;
+}
+
+div h2 {
+  font-size: 28px;
+}
+
+.chat-log label {
+  background-color: #D6C7AE;
+  border-radius: 6px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  width: 200px;
+  padding: 4px 20px;
+  margin: 10px 0 20px;
+}
+
+.chat-log textarea {
+  height: 150px;
+  width: 500px;
+  padding: 10px;
+  margin: 10px 0 20px;
+  border: 2px solid #5F6F52;
+  border-radius: 8px;
+}
+
+.input-group {
+  margin: 10px 0 20px;
+  display: flex;
+  align-items: baseline;
+}
+
+.input-group .message input[type="text"]{
+  padding: 10px 20px;
+  max-width: 250px;
+  margin-right: 10px;
+  border: 1px solid #5F6F52;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.input-group button {
+  padding: 6px 20px;
+  margin-left: 5px;
+  background-color: #5F6F52;
+  color: #FEFAE0;
+  border: 1px solid #A9B388;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+
+.online-users label {
+  font-size: 16px;
+  padding: 10px;
+}
+
+.online-users select {
+  padding: 0 2px;
+  background-color: #5F6F52;
+  color: #FEFAE0;
+}
+
+@media (max-width: 627px) {
+  .container {
+    margin: 10px;
+    padding: 10px;
+  }
+
+  .container h2 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .chat-log label {
+    display: flex;
+    justify-content: center;
+    width: auto;
+  }
+
+  .chat-log textarea {
+    display: block;
+    margin: auto;
+    width: 400px;
+    height: 180px;
+  }
+
+  .input-group {
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+  }
+}

@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const threatChart = new Chart(
     document.getElementById('myChart'),
     {
-      type: 'polarArea',
+      type: 'doughnut',
       data: {
         labels: [],
         datasets: []
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
     .then(response => response.json())
     .then(response => {
       console.log(response.data);
-      for (item of response.data) {
+      for (item of response.data.slice(0, 10)) {
         const randomColor = getRandomColor();
 
         threatChart.data.labels.push(item);
@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
       }
       threatChart.update();
-      console.log(threatChart);
     })
     .catch(err => console.error(err));
 

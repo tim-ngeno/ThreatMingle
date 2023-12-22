@@ -1,11 +1,12 @@
 body {
   background-color: #FEFAE0;
+  margin: 0;
 }
 
 /* Reset some default styles */
 nav {
-  margin: 0;
-  padding: 0;
+  margin: 10px;
+  padding: 10px 5px;
   list-style: none;
 }
 
@@ -13,6 +14,28 @@ nav {
 nav ul {
   display: flex;
   list-style: none;
+}
+
+nav ul li span {
+  background-image: url('../images/tagname.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 0;
+  margin: 0;
+  height: 40px;
+  width: 150px;
+  display: block;
+}
+
+title {
+  background-image: url('../images/logo.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 0;
+  margin: 0;
+  height: 40px;
+  width: 40px;
+  display: block;
 }
 
 /* Style for the links */
@@ -27,6 +50,16 @@ nav a {
   transition: background-color 0.3s, color 0.3s, box-shadow 0.3s; /* Smooth transition effect */
 }
 
+nav ul li.active {
+  text-decoration: overline;
+  color: darkkhaki;
+  line-height: 1.2;
+}
+
+nav ul li.active:hover {
+  text-decoration: none;
+}
+
 /* Hover effect */
 nav a:hover {
   background-color: #B99470; /* Change background color on hover */
@@ -38,4 +71,65 @@ nav a:hover {
 nav ul {
   padding: 10px;
   margin: 0;
+}
+
+
+/* Footer */
+
+.footer-section {
+  display: block;
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+footer {
+  position: absolute;
+  padding: 30px;
+  background-color: #5F6F52;
+  color: #fff;
+  width: 100%;
+  bottom: 0;
+  text-align: center;
+}
+
+footer ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  margin: auto;
+  padding: 0;
+}
+
+/* Footer links */
+footer a {
+    color: #FEFAE0;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+/* Hover effect for footer links */
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+@media (max-width: 800px) {
+  nav {
+    display: flex;
+    justify-content: center;
+  }
+
+  nav ul li span {
+    background-image: url('../images/logo.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 24px;
+    width: 24px;
+  }
+
+  nav ul {
+    display: flex;
+  }
 }
