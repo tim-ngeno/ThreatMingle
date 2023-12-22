@@ -2,19 +2,49 @@
 {% load static %}
 
 {% block cssfiles %}
-<!-- <link href="{% static 'css/base.css' %}" rel="stylesheet"/> -->
+<link href="{% static 'assessment/css/results.css' %}"
+      rel="stylesheet"
+      type="text/css"/>
 {% endblock cssfiles %}
 
 
 {% block content %}
-<h1>Risk Assessment Results</h1>
-{% if result %}
-{% for key, value in result.items %}
-<p>{{ key.title }}: {{ value }}</p>
-{% endfor %}
-<h2>{{ advice }}</h2>
-{% else %}
-<p>No results available</p>
-{% endif %}
+<div class="header">
+  <h2>Scan Results</h2>
+</div>
+<section class="container">
+  <div class="result-interpretation">
+    <h2>Results Interpretation</h2>
+    <p>
+      <q>VirusTotal has developed its own file reputation system. Whenever you submit a file or URL, you'll see a chart which shows the reputation of the file or URL and ranges from <strong>-100 (fully malicious reputation)</strong> to <strong>100 (fully harmless reputation)</strong>. The reputation of each file or URL is built by (among other factors) VirusTotal Community user votes</q>
+    </p>
+  </div>
+
+  <div class="result-container">
+    <div class="progress-bar">
+      <div id="progress" class="progress"><span>{{ score }}%</span></div>
+    </div>
+    <div class="scan-results">
+      <!-- Get the reputation score percentage -->
+      <p>Reputation Score:
+	<span id="reputation-score">
+	  {{ score }}%
+	</span>
+	<div id="result-message" class="result-message"></div>
+      </p>
+      <h4>Results Breakdown:</h4>
+      {% for key, value in result.items %}
+      <span>{{ key.title }}: {{ value }}</span>
+      {% endfor %}
+    </div>
+
+
+  </div>
+</section>
 
 {% endblock content %}
+
+{% block scripts %}
+<script src="{% static 'assessment/js/results.js' %}" type="text/javascript">
+</script>
+{% endblock scripts %}
