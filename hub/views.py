@@ -17,5 +17,7 @@ def room_view(request, room_name):
     Defines the room view for the hub model
     """
     chat_room, created = Room.objects.get_or_create(name=room_name)
+    if request.user.is_authenticated:
+        chat_room.join(request.user)
     return render(request, 'hub/room.html', {'room': chat_room, "title":
                                              chat_room})
