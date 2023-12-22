@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
       data: {
         labels: [],
         datasets: []
+      },
+      options: {
+        plugins: {
+          legend: {
+	    display: false
+          }
+        }
       }
     }
   );
