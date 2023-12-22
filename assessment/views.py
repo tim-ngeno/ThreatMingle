@@ -27,17 +27,16 @@ def risk_assessment_view(request):
             selected_option = form.cleaned_data['options']
             input_data = form.cleaned_data['input_data']
 
-            result = loop.run_until_complete(main(
+            result, score = loop.run_until_complete(main(
                 selected_option, input_data
             ))
 
             if result:
-                score = calculate_reputation_score(result)
-                advice = interpret_reputation_score(score)
-
+                print(result, '\n', score)
+                score = score // 100 if score > 100 else score
                 return redirect(
                     reverse('risk-results') +
-                    f'?result={result}&score={score}&advice={advice}'
+                    f'?result={result}&score={score}'
                 )
             else:
                 return 'Error: Failed to perform the scan'
@@ -56,7 +55,6 @@ def risk_results_view(request):
     """
     result_str = request.GET.get('result', None)
     score = request.GET.get('score', None)
-    advice = request.GET.get('advice', None)
 
     try:
         result = ast.literal_eval(result_str)
@@ -67,8 +65,7 @@ def risk_results_view(request):
         request,
         'assessment/results.html',
         {
-            'result': result, 'score': score,
-            'advice': advice, 'title': 'Result'
+            'result': result, 'score': score, 'title': 'Result'
         }
     )
 
@@ -83,9 +80,10 @@ async def scan_file(file_hash):
                 f'/files/{file_hash}'
             )
             file_stats = file_data.get('last_analysis_stats')
+            score = file_data.get('reputation')
 
-            if file_stats:
-                return file_stats
+            if file_stats and score:
+                return file_stats, score
             else:
                 print(f'No stats found for file hash {file_hash}')
                 return None
@@ -109,8 +107,10 @@ async def scan_url(url_addr):
                 f'/urls/{url_id}'
             )
             result = url.get('last_analysis_stats')
+            score = url.get('reputation')
+
             if result:
-                return result
+                return result, score
             else:
                 return None
     except vt.APIError as e:
@@ -135,52 +135,14 @@ def scan_ip(ip_addr):
             res = requests.get(url, headers=headers)
             ip = res.json()
             result = ip['data']['attributes']['last_analysis_stats']
+            score = ip['data']['attributes']['reputation']
             if result:
-                return result
+                return result, score
         except Exception as e:
             print(f'An unexpected error occurred: {e}')
             return None
     else:
         return None
-
-
-def calculate_reputation_score(stats):
-    """
-    Calculate the reputations score for a scanned item
-    """
-    weights = {
-        'harmless': 1,
-        'malicious': 3,
-        'suspicious': 2,
-    }
-
-    try:
-        total_score = sum(
-            weights.get(category, int(0)) * (count) for category,
-            count in stats.items()
-        )
-    except Exception:
-        return None
-
-    max_score = sum(weights.values())
-    percentage_score = (total_score // max_score) * 100
-
-    return percentage_score
-
-
-def interpret_reputation_score(score):
-    """
-    Define threshold for interpretation of reputation scores
-    """
-    if score:
-        if score >= 75:
-            return f'Score: {score} Resource is safe to use'
-        elif 50 <= score < 75:
-            return f'Score: {score} Proceed with caution'
-        else:
-            return f'Score: {score} Use at your own risk'
-    else:
-        return
 
 
 def is_valid_hash(hash_value):
