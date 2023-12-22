@@ -91,5 +91,8 @@ The Learn app contains interactive learning modules.
 - Explore learning modules at `/learn/`.
 
 ## Contributing
-Contributions to ThreatMingle are highly welcomed! If you would like to add value to the project, feel free to open an issue or a pull request.
-
+Contributions to ThreatMingle are not just welcome; they are celebrated!
+If you're passionate about cybersecurity and want to contribute to a
+project with a purpose, feel free to open an issue or submit a pull
+request. Your ideas, expertise, and collaboration are integral to the
+growth of ThreatMingle.
