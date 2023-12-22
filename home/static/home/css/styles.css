@@ -63,14 +63,13 @@ section > div {
   height: 400px;
 }
 
-/* Style for the left side of each section */
-section > div > div:first-child {
-  width: 50%;
-}
-
-/* Style for the right side of each section */
+/* Style for the left and right side of each section */
+section > div > div:first-child,
 section > div > div:last-child {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -86,6 +85,10 @@ section > div > div:last-child {
 #assessment {
   background-color: #A9B388;
   color: #FEFAE0;
+}
+
+#assessment div.assess-button {
+  display: flex;
 }
 
 #assessment .assess-button a {
@@ -148,6 +151,9 @@ section > div > div:last-child {
   background-color: #5F6F52;
 }
 
+
+
+/* MEDIA QUERIES */
 
 
 @media (max-width: 927px) {
