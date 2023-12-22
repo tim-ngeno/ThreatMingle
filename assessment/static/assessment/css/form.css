@@ -1,0 +1,60 @@
+/* Style the form container */
+.form-group {
+  max-width: 400px;
+  padding: 10px 10px 50px 50px;
+}
+
+/* Style the form header */
+#assessment-form h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+}
+
+/* Style form fields and labels */
+#assessment-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+
+#assessment-form input[type="radio"] {
+  margin: 10px 8px;
+}
+
+#assessment-form input[type="text"],
+#assessment-form select {
+  width: 80%;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+}
+
+/* Style the submit button */
+#scan-button {
+  background-color: #5F6F52;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 1em;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+#scan-button:hover {
+  background-color: #B99470;
+}
+
+
+@media (max-width: 800px) {
+  .form-group {
+    width: 100%;
+    padding: 30px 10px;
+    margin: auto;
+  }
+
+  #assessment-form input [type="text"] {
+    
+  }
+}

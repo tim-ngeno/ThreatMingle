@@ -1,0 +1,97 @@
+.container {
+  display: flex;
+}
+
+.result-interpretation {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.result-interpretation h2 {
+  margin: 20px auto;
+}
+
+.result-interpretation p q {
+  font-size: 24px;
+}
+
+.header  {
+  display: flex;
+  justify-content: center;
+}
+
+.header h2 {
+  font-size: 30px;
+  margin: 20px 40px;
+}
+
+.result-container {
+  display: flex;
+  width: 50%;
+  flex-direction: column;
+  padding: 40px 20px;
+  margin: 0 0 10% 10%;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  width: 50%;
+  background-color: #ddd;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.progress-bar span {
+  font-size: 16px;
+  margin: auto;
+  color: #FEFAE0;
+}
+
+.progress {
+  height: 20px;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  width: 0;
+}
+
+.scan-results {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  margin: 30px 0;
+}
+
+.scan-results p, .scan-results p span {
+  font-size: 22px;
+  font-weight: larger;
+}
+
+
+#reputation-score {
+  font-weight: bold;
+  color: #4caf50;
+}
+
+#result-message {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .header h2 {
+    display: block;
+    margin: auto;
+  }
+  .result-container, .result-interpretation {
+    width: 100%;
+    margin: 30px auto;
+  }
+}
