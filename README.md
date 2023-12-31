@@ -1,5 +1,4 @@
 ---
-
 # ThreatMingle
 
 ThreatMingle is a comprehensive cybersecurity platform designed to provide real-time threat insights, personalized risk assessments, community forums, and interactive learning modules.
@@ -41,6 +40,30 @@ python3 -m venv venv
 pip install -r requirements.txt
 ```
 
+- Database setup and environment variables required:
+The project uses MariaDB for the Database, which you can setup or use
+MySQL.
+
+create a database named `threatmingle` in your Database console,
+```SQL
+CREATE DATABASE IF NOT EXISTS threatmingle;
+```
+
+or directly from the terminal:
+```bash
+echo "CREATE DATABASE IF NOT EXISTS threatmingle" | mysql -uroot -p{your_password}
+```
+
+
+- Get a VirusTotal API key for free: [Sign up for a free API Key](https://www.virustotal.com/gui/join-us)
+
+- Export your variables or use a dotenv file to store them securely
+```bash
+export VIRUSTOTAL_API_KEY={your_key} DB_USER={your_db_username}
+DB_PWD={your_db_password} DB_NAME=threatmingle DB_HOST=localhost DB_PORT=3306
+```
+
+
 3. Run migrations:
 
 ```bash
@@ -48,10 +71,10 @@ python3 manage.py migrate
 ```
 
 4. Run server
-   ```bash
-   python3 manage.py runserver
-   ```
-   
+```bash
+python3 manage.py runserver
+```
+
 
 ## Usage
 
