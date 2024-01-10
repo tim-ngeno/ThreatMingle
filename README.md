@@ -28,7 +28,7 @@ ThreatMingle is divided into several components, each serving a distinct purpose
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/ThreatMingle.git
+git clone https://github.com/tim-ngeno/ThreatMingle.git
 cd ThreatMingle
 ```
 
